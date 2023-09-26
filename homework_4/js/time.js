@@ -1,9 +1,13 @@
 let whatTime = prompt('Hello! Write how much hours you want to convert:');
+const hours = parseFloat(whatTime);
 
-const seconds = +whatTime * 60 * 60;
-
-if (whatTime <= 1) {
-    alert(`${whatTime} hour = ${seconds} seconds`);
+if (isNaN(hours)) {
+    alert('Please, write a number');
 } else {
-    alert(`${whatTime} hours = ${seconds} seconds`);
+    const seconds = hours * 60 * 60;
+    if (hours <= 1) {
+    alert(`${hours} hour = ${seconds} seconds`);
+    } else {
+    alert(`${hours} hours = ${seconds} seconds`);
+    }
 }
