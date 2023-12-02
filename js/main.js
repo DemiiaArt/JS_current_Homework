@@ -21,7 +21,16 @@ refs.closeIcon.addEventListener('click', closeFullImage)
 refs.closeIcon.addEventListener('mousedown', tapDownCloseButton)
 refs.closeIcon.addEventListener('mouseup', tapUpCloseButton)
 
-
+// function getFullSizeImg (imgSrc) {
+//     // console.dir(String);
+//     let delIndex = (imgSrc.search('.jpg')) - 2;
+//     // console.log(delIndex);
+//     let stringStart = imgSrc.substring(0, delIndex);
+//     let srtingEnd = imgSrc.substring((delIndex + 1), imgSrc.length)
+//     // console.log(stringStart);
+//     // console.log(srtingEnd);
+//     return stringStart.concat(srtingEnd)
+// }
 
 function slidering (event) {
     const imgArray = refs.gallery.children;
@@ -46,7 +55,7 @@ function slidering (event) {
 
     let nextImg = imgArray[nexImgIndex].classList.add('current');
     let nextImgUrl = imgArray[nexImgIndex].firstElementChild.currentSrc;
-
+    // let modifyUrl = getFullSizeImg(nextImgUrl);
     refs.openingImage.src = nextImgUrl;
 
     //start and end of slider
@@ -82,6 +91,7 @@ function OpenFullImage (event) {
         refs.gallery.parentNode.classList.add('show-modal');
         event.target.parentNode.classList.add('current');
         const currentImgUrl = event.target.src;
+        // let modifyUrl = getFullSizeImg(currentImgUrl);
         refs.openingImage.src = currentImgUrl;
     }
     
