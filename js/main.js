@@ -35,8 +35,6 @@ refs.galleryList.append(...images);
 
 
 
-
-
 //======lightbox opening/close
 refs.galleryList.addEventListener('click', openFullImage);
 refs.lightbox.addEventListener('click', closeFullImageBackdrop);
