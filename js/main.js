@@ -1,43 +1,87 @@
+import galleryItems from './images.js';
+
 const refs = {
-    gallery: document.querySelector('.gallery'),
-    backdrop: document.querySelector('.backdrop'),
-    openingImage: document.querySelector('.modal img'),
-    closeIcon: document.querySelector('.close-icon'),
+    galleryList: document.querySelector('.js-gallery'),
+    lightbox: document.querySelector('.js-lightbox'),
+    closeBtn: document.querySelector('.lightbox__button'),
+    openingImage: document.querySelector('.lightbox__content img'),
     sliderLeftBtn: document.querySelector('#left'),
     sliderRightBtn: document.querySelector('#right'),
 }
+
+//Створеня списку зображень
+const createGalleryItem = galleryItems => {
+    const galleryItem = document.createElement('li');
+    galleryItem.classList.add('gallery__item');
+
+    const galleryLink = document.createElement('a');
+    galleryLink.classList.add('gallery__link');
+    galleryLink.setAttribute('href', `${galleryItems.original}`);  ///!!!!!====================================
+
+    const galleryImg = document.createElement('img');
+    galleryImg.classList.add('gallery__image');
+    galleryImg.setAttribute('src', `${galleryItems.preview}`);
+    galleryImg.setAttribute('data-source', `${galleryItems.original}`);
+    galleryImg.setAttribute('alt', `${galleryItems.description}`);
+
+    galleryLink.append(galleryImg);
+    galleryItem.append(galleryLink);
+
+    return galleryItem;
+}
+
+const images = galleryItems.map(item => createGalleryItem(item));
+refs.galleryList.append(...images);
+
+
+
+
+
+
+//======lightbox opening/close
+refs.galleryList.addEventListener('click', openFullImage);
+refs.lightbox.addEventListener('click', closeFullImageBackdrop);
 
 //====next or previous slide
 refs.sliderRightBtn.addEventListener('click', slidering)
 refs.sliderLeftBtn.addEventListener('click', slidering)
 
+//===Close button
+refs.closeBtn.addEventListener('click', closeFullImage);
 
-refs.gallery.addEventListener('click', OpenFullImage)
-refs.backdrop.addEventListener('click', closeFullImageBackdrop)
 
 
-//======Close button
-refs.closeIcon.addEventListener('click', closeFullImage)
-refs.closeIcon.addEventListener('mousedown', tapDownCloseButton)
-refs.closeIcon.addEventListener('mouseup', tapUpCloseButton)
 
-// function getFullSizeImg (imgSrc) {
-//     // console.dir(String);
-//     let delIndex = (imgSrc.search('.jpg')) - 2;
-//     // console.log(delIndex);
-//     let stringStart = imgSrc.substring(0, delIndex);
-//     let srtingEnd = imgSrc.substring((delIndex + 1), imgSrc.length)
-//     // console.log(stringStart);
-//     // console.log(srtingEnd);
-//     return stringStart.concat(srtingEnd)
-// }
+
+function handlerPressEscape (event) {
+    if (event.code === 'Escape') {
+        closeFullImage();
+    } 
+}
+
+function handlerPressRightLeft (event) {
+    if (event.code === 'ArrowRight' || event.code === 'ArrowLeft') {
+        slidering(event);
+    } 
+}
+
+function hiddenStartEndButtons () {
+    if (refs.galleryList.querySelector('.current').firstElementChild.href === refs.galleryList.firstElementChild.firstElementChild.href) {
+        refs.sliderLeftBtn.style.visibility = 'hidden'
+    } else if (refs.galleryList.querySelector('.current').lastElementChild.href === refs.galleryList.lastElementChild.firstElementChild.href) {
+        refs.sliderRightBtn.style.visibility = 'hidden'
+    } else {
+        refs.sliderLeftBtn.style.visibility = 'visible';
+        refs.sliderRightBtn.style.visibility = 'visible';
+    }
+}
 
 function slidering (event) {
-    const imgArray = refs.gallery.children;
-    let currentImgIndex = (Array.from(imgArray).findIndex(elem => elem.className === 'current'));
+    const imgArray = refs.galleryList.children;
+    let currentImgIndex = (Array.from(imgArray).findIndex(elem => elem.className === 'gallery__item current'));
     let nexImgIndex = currentImgIndex;
-
-    refs.gallery.querySelector('.current').classList.remove('current');
+    
+    refs.galleryList.querySelector('.current').classList.remove('current');
     let slideDirection= '';
     if (event.code === 'ArrowRight') {
         slideDirection = 'right';
@@ -54,57 +98,31 @@ function slidering (event) {
     }
 
     let nextImg = imgArray[nexImgIndex].classList.add('current');
-    let nextImgUrl = imgArray[nexImgIndex].firstElementChild.currentSrc;
-    // let modifyUrl = getFullSizeImg(nextImgUrl);
+    let nextImgUrl = imgArray[nexImgIndex].firstElementChild.href;
     refs.openingImage.src = nextImgUrl;
 
     //start and end of slider
     hiddenStartEndButtons()
 }
 
-function hiddenStartEndButtons () {
-    if (refs.gallery.querySelector('.current').firstElementChild.src === refs.gallery.firstElementChild.firstElementChild.src) {
-        refs.sliderLeftBtn.style.visibility = 'hidden'
-    } else if (refs.gallery.querySelector('.current').firstElementChild.src === refs.gallery.lastElementChild.firstElementChild.src) {
-        refs.sliderRightBtn.style.visibility = 'hidden'
-    } else {
-        refs.sliderLeftBtn.style.visibility = 'visible';
-        refs.sliderRightBtn.style.visibility = 'visible';
-    }
-}
-
-function handlerPressEscape (event) {
-    if (event.code === 'Escape') {
-        closeFullImage();
-    } 
-}
-
-function handlerPressRightLeft (event) {
-    if (event.code === 'ArrowRight' || event.code === 'ArrowLeft') {
-        slidering(event);
-    } 
-}
-
-
-function OpenFullImage (event) {
+function openFullImage (event) {
     if (event.target.nodeName === 'IMG') {
-        refs.gallery.parentNode.classList.add('show-modal');
-        event.target.parentNode.classList.add('current');
-        const currentImgUrl = event.target.src;
-        // let modifyUrl = getFullSizeImg(currentImgUrl);
+        refs.lightbox.classList.add('is-open');
+        event.target.parentNode.parentNode.classList.add('current');
+        const currentImgUrl = event.target.dataset.source;
         refs.openingImage.src = currentImgUrl;
     }
     
     window.addEventListener('keydown', handlerPressEscape);
     window.addEventListener('keydown', handlerPressRightLeft);
-    //start and end of slider
+    //====start and end of slider
     hiddenStartEndButtons()
 }
 
 function closeFullImageBackdrop (event) {
-    if (event.target === event.currentTarget) {
-        refs.gallery.parentNode.classList.remove('show-modal');
-        const currentImg = refs.gallery.querySelector('.current');
+    if (event.target === event.currentTarget.firstElementChild) {
+        refs.lightbox.classList.remove('is-open');
+        const currentImg = refs.galleryList.querySelector('.current');
         currentImg.classList.remove('current');
     }
 }
@@ -113,24 +131,9 @@ function closeFullImage () {
     window.removeEventListener('keydown', handlerPressEscape);
     window.removeEventListener('keydown', handlerPressRightLeft);
     
-    refs.gallery.parentNode.classList.remove('show-modal');
-    const currentImg = refs.gallery.querySelector('.current');
+    refs.lightbox.classList.remove('is-open');
+    const currentImg = refs.galleryList.querySelector('.current');
     currentImg.classList.remove('current');
 }
 
 
-
-//===Close button===//
-const buttonDefaultColor = 'rgb(46, 46, 46)';
-const buttonTapColor = 'rgb(112, 112, 112)';
-
-function tapDownCloseButton (event) {
-    if (event.target.parentNode.className === 'close-icon') {
-        refs.closeIcon.style.backgroundColor = buttonTapColor;
-    }
-}
-function tapUpCloseButton (event) {
-    if (event.target.parentNode.className === 'close-icon') {
-        refs.closeIcon.style.backgroundColor = buttonDefaultColor;
-    }
-}

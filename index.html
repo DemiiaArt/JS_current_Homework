@@ -7,29 +7,29 @@
     <title>Document</title>
     <link rel="stylesheet" href="./css/style.css">
 </head>
+
 <body>
-    <div class="wrapper">
-        <ul class="gallery">
-            <li><img src="./media/01.jpg" alt="1"></li>
-            <li><img src="./media/02.jpg" alt="2"></li>
-            <li><img src="./media/03.jpg" alt="3"></li>
-            <li><img src="./media/04.jpg" alt="4"></li>
-            <li><img src="./media/05.jpg" alt="5"></li>
-            <li><img src="./media/06.jpg" alt="6"></li>
-            <li><img src="./media/07.jpg" alt="7"></li>
-            <li><img src="./media/08.jpg" alt="8"></li>
-            <li><img src="./media/09.jpg" alt="9"></li>
-        </ul>
-        <div class="backdrop">
-            <div class="close-icon"><span></span></div>
-            <div class="modal">
-                <img src="#" alt="fullsize image">
-                <div id="left" class="slider left-side"><span></span></div>
-                <div id="right" class="slider right-side"><span></span></div>
-            </div>
+    <!-- До цього списку додай елементи галереї -->
+    <ul class="gallery js-gallery"></ul>
+
+    <!--
+      Модальне вікно для повнорозмірного зображення
+      Щоб відкрити, необхідно додати на div.lightbox CSS-клас is-open
+    -->
+    <div class="lightbox js-lightbox">
+        <div class="lightbox__overlay"></div>
+
+        <div class="lightbox__content">
+            <img class="lightbox__image" src="" alt="" />
+            <div id="left" class="slider left-side"><span></span></div>
+            <div id="right" class="slider right-side"><span></span></div>
         </div>
+
+        <button type="button" class="lightbox__button" data-action="close-lightbox">
+            <img src="./media/close.svg" alt="close">
+        </button>
     </div>
-    <script src="./js/main.js"></script>
+    <script type="module" src="./js/main.js"></script>
 </body>
 
 </html>
