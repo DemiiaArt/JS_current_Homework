@@ -16,7 +16,6 @@ const createGalleryItem = galleryItems => {
 
     const galleryLink = document.createElement('a');
     galleryLink.classList.add('gallery__link');
-    // galleryLink.setAttribute('href', `${galleryItems.original}`);  ///!!!!!====================================
 
     const galleryImg = document.createElement('img');
     galleryImg.classList.add('gallery__image');
