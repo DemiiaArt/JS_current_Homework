@@ -16,7 +16,7 @@ const createGalleryItem = galleryItems => {
 
     const galleryLink = document.createElement('a');
     galleryLink.classList.add('gallery__link');
-    galleryLink.setAttribute('href', `${galleryItems.original}`);  ///!!!!!====================================
+    // galleryLink.setAttribute('href', `${galleryItems.original}`);  ///!!!!!====================================
 
     const galleryImg = document.createElement('img');
     galleryImg.classList.add('gallery__image');
@@ -66,9 +66,9 @@ function handlerPressRightLeft (event) {
 }
 
 function hiddenStartEndButtons () {
-    if (refs.galleryList.querySelector('.current').firstElementChild.href === refs.galleryList.firstElementChild.firstElementChild.href) {
+    if (refs.galleryList.querySelector('.current').firstElementChild.firstElementChild.src === refs.galleryList.firstElementChild.firstElementChild.firstElementChild.src) {
         refs.sliderLeftBtn.style.visibility = 'hidden'
-    } else if (refs.galleryList.querySelector('.current').lastElementChild.href === refs.galleryList.lastElementChild.firstElementChild.href) {
+    } else if (refs.galleryList.querySelector('.current').lastElementChild.firstElementChild.src === refs.galleryList.lastElementChild.firstElementChild.firstElementChild.src) {
         refs.sliderRightBtn.style.visibility = 'hidden'
     } else {
         refs.sliderLeftBtn.style.visibility = 'visible';
@@ -98,7 +98,8 @@ function slidering (event) {
     }
 
     let nextImg = imgArray[nexImgIndex].classList.add('current');
-    let nextImgUrl = imgArray[nexImgIndex].firstElementChild.href;
+    let nextImgUrl = imgArray[nexImgIndex].firstElementChild.firstElementChild.getAttribute('data-source');
+    console.log(nextImgUrl);
     refs.openingImage.src = nextImgUrl;
 
     //start and end of slider
