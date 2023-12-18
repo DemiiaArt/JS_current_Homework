@@ -1,0 +1,105 @@
+section {
+    padding: 20px 0;
+
+    .headerText {
+        margin-top: 0;
+        font-weight: 700;
+        margin-bottom: 78px;
+    }
+}
+
+@media (min-width: 768px) {
+    section {
+        padding: 40px 0;
+    }
+}
+
+@media (min-width: 992px) {
+    section {
+        flex-grow: 1;
+    }
+}
+
+#jokesList,
+#likedJokesList {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.backdrop {
+    position: absolute;
+    display: flex;
+    flex-direction: row-reverse;
+    inset: 0;
+    pointer-events: none;
+
+    width: 0;
+
+    .burger {
+        position: relative;
+        right: 0;
+        background: $lite_bg;
+        height: 100%;
+        padding-top: 40px;
+        opacity: 0;
+
+        width: 0;
+        transition: width 100ms ease-in-out;
+
+        #likedJokesList {
+            padding-top: 48px;
+
+            li {
+
+            }
+        }
+    }
+}
+
+@media (min-width: 768px) {
+    .backdrop {
+        background: $backdrop_bg;
+
+        .burger {
+            width: 60vw;
+            position: absolute;
+            top: 0;
+            right: 0;
+
+            #likedJokesList {
+                padding-top: 48px;
+            }
+        }
+    }
+}
+
+@media (min-width: 992px) {
+    .backdrop {
+        position: static;
+        transform: translateX(0);
+        background: none;
+        width: fit-content;
+        pointer-events: initial;
+
+        .burger {
+            width: 480px;
+            position: static;
+            opacity: 1;
+            transform: translateX(0);
+        }
+    }
+}
+
+
+.backdrop {
+    &.isOpen {
+        width: 100%;
+        pointer-events: initial;
+
+        .burger {
+            opacity: 1;
+            width: 100%;
+        }
+    }
+}
