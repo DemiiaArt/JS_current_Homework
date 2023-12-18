@@ -1,0 +1,115 @@
+@font-face {
+    font-family: 'Roboto';
+    src: url('../fonts/Roboto-Regular.woff2') format('woff2'),
+        url('../fonts/Roboto-Regular.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Roboto';
+    src: url('../fonts/Roboto-Medium.woff2') format('woff2'),
+        url('../fonts/Roboto-Medium.woff') format('woff');
+    font-weight: 500;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Roboto';
+    src: url('../fonts/Roboto-Bold.woff2') format('woff2'),
+        url('../fonts/Roboto-Bold.woff') format('woff');
+    font-weight: bold;
+    font-style: normal;
+    font-display: swap;
+}
+
+body {
+    font-family: 'Roboto', Helvetica, sans-serif;
+    font-weight: normal;
+    font-size: 18px;
+    line-height: 144%;
+    color: $text;
+
+    min-height: 100vh;
+    max-width: 100vw;
+}
+
+main {
+    min-height: 100vh;
+}
+
+.wrapper {
+    position: relative;
+    // overflow: hidden;
+    // min-height: 100vh;
+    // height: 100%;
+}
+
+@media (min-width: 992px) {
+    main {
+        display: flex; 
+    }
+}
+
+
+.container {
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+@media (min-width: 768px) {
+    .container {
+        padding: 0 40px;
+    }
+}
+
+@media (min-width: 992px) {
+    .container {
+        max-width: 760px;
+    }
+}
+
+ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+a {
+    color: $link;
+    font-size: 10px; 
+    line-height: 14px;
+    font-weight: 500;
+
+    span {
+        // display: inline-block;
+        // width: 10px;
+        // height: 10px;
+        vertical-align: baseline;
+    }
+}
+
+h1 {
+    font-size: 32px;
+    font-weight: 700;
+    line-height: 137%;
+    margin: 0;
+}
+
+h2 {
+    font-size: 24px;
+    font-weight: 500;
+    line-height: 183%;
+    margin: 0 0 43px
+}
+
+h3 {
+    font-size: 20px;
+    font-weight: 500;
+    line-height: 140%;
+}
+
+
+

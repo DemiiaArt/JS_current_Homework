@@ -1,0 +1,93 @@
+.burgerMenu {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    z-index: 50;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    cursor: pointer;
+    color: $text_lite;
+    font-weight: 500;
+
+    input {
+        visibility: hidden;
+    }
+}
+
+@media (min-width: 768px) {
+    .burgerMenu {
+        top: 40px;
+        right: 40px;
+    }
+}
+
+@media (min-width: 992px) {
+    .burgerMenu {
+        top: 40px;
+        right: 305px;
+        flex-direction: row-reverse;
+        justify-content: flex-end;
+    }
+}
+
+
+
+
+.burgerIcon {
+    background: $text;
+    border-radius: 50%;
+    width: 28px;
+    height: 28px;
+    display: block;
+    position: relative;
+
+    &:before {
+        content: '';
+        position: absolute;
+        top: 55%;
+        left: 50%;
+        transform: translateX(-50%);
+        display: block;
+        background: $white;
+        width: 15px;
+        height: 2px;
+        transition: $icons;
+    }
+
+    &:after {
+        content: '';
+        position: absolute;
+        top: 35%;
+        left: 50%;
+        transform: translateX(-50%);
+        display: block;
+        background: $white;
+        width: 15px;
+        height: 2px;
+        transition: $icons;
+    }
+}
+
+@media (min-width: 992px) {
+    .burgerIcon {
+        visibility: hidden;
+        opacity: 0;
+    }
+}
+
+//Animation open-close
+#burgerIconCheck:checked+.burgerIcon:before {
+    top: 47%;
+    left: 25%;
+    transform: rotate(316deg) translateX(0);
+}
+
+#burgerIconCheck:checked+.burgerIcon:after {
+    top: 47%;
+    left: 25%;
+    transform: rotate(45deg) translateX(0);
+}
+
+
+// transform: translateX(100%)

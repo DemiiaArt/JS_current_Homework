@@ -1,0 +1,86 @@
+.card {
+    padding: 47px 20px 20px;
+    background: $lite_bg;
+    border-radius: 20px;
+    border: none;
+    position: relative;
+
+    display: flex;
+    gap: 20px;
+
+    p {
+        margin: 0;
+    }
+
+    .jokeIcon {
+        height: 40px;
+        padding: 11px 10px;
+        border-radius: 50%;
+        background: $white;
+    }
+
+    &__body {
+        font-size: 10px;
+        color: $text_lite;
+        font-weight: 500;
+        flex-grow: 1;
+        
+        &>p {
+            line-height: 0;
+            margin-bottom: 5px;
+        }
+
+        .joke {
+            font-size: 18px;
+            color: $text;
+            line-height: 144%;
+        }
+    }
+
+    &__info {
+        margin-top: 23px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+
+    .tag {
+        color: $text;
+        font-size: 10px;
+        letter-spacing: 2px;
+        font-weight: 500;
+        line-height: 140%;
+        text-transform: uppercase;
+
+        padding: 6px 20px;
+        background: $white;
+        border-radius: 6px;
+    }
+
+    #likedJokesList & {
+        background: $white;
+        box-shadow: $box_shad;
+
+        .tag {
+            background: $lite_bg;
+        }
+
+        .joke { 
+            font-size: 14px;
+        }
+    }
+}
+
+@media (min-width: 768px) {
+    .card {
+        padding: 67px 40px 45px;
+
+        #likedJokesList & {
+            padding: 47px 20px 20px;
+            .joke { 
+                font-size: 14px;
+            }
+        }
+    }
+}

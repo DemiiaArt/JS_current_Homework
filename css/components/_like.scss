@@ -1,0 +1,26 @@
+.icon-Vector,
+.icon-heart {
+    color: $heart;
+    transition: $icons;
+    border: none;
+    background: none;
+}
+
+#likeIcon {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    padding: 0;
+
+    #likedJokesList & {
+        top: 20px;
+        right: 20px;
+    }
+}
+
+@media (min-width: 768px) {
+    #likeIcon {
+        top: 40px;
+        right: 40px;
+    }
+}
