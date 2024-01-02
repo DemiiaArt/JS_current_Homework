@@ -1,4 +1,8 @@
-
+.wrapper {
+    background: url(../img/bg.jpg);
+    min-height: 100vh;
+    background-repeat: repeat;
+}
 
 section {
     padding: 20px 0;
@@ -84,11 +88,13 @@ section {
         width: fit-content;
         pointer-events: initial;
 
+
         .burger {
             width: 480px;
             position: static;
             opacity: 1;
             transform: translateX(0);
+            // background: initial;
         }
     }
 }
@@ -101,6 +107,22 @@ section {
 
         .burger {
             opacity: 1;
+            width: 100%;
+        }
+    }
+}
+
+@media (min-width: 768px)  {
+    .backdrop.isOpen {
+        .burger {
+            width: 60vw;
+        }
+    }
+}
+
+@media (min-width: 992px)  {
+    .backdrop.isOpen {
+        .burger {
             width: 100%;
         }
     }

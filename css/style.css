@@ -443,6 +443,12 @@ h3 {
   content: "\e902";
 }
 
+.wrapper {
+  background: url(../img/bg.jpg);
+  min-height: 100vh;
+  background-repeat: repeat;
+}
+
 section {
   padding: 20px 0;
 }
@@ -529,6 +535,16 @@ section .headerText {
   width: 100%;
 }
 
+@media (min-width: 768px) {
+  .backdrop.isOpen .burger {
+    width: 60vw;
+  }
+}
+@media (min-width: 992px) {
+  .backdrop.isOpen .burger {
+    width: 100%;
+  }
+}
 .icon-Vector,
 .icon-heart {
   color: #FF6767;
@@ -819,8 +835,15 @@ input[name=jokeFinder]:checked + span:after {
   line-height: 137%;
   font-weight: 700;
   font-size: 16px;
+  cursor: pointer;
   padding: 10px 40px;
   background: linear-gradient(91deg, #8EA7FF 0%, #7291FF 100%);
   border-radius: 10px;
   border: none;
+}
+#getAJoke:hover {
+  background: linear-gradient(91deg, #c3cff8 0%, #97a2ca 100%);
+}
+#getAJoke:active {
+  background: linear-gradient(91deg, #4a70fa 0%, #2546c0 100%);
 }/*# sourceMappingURL=style.css.map */
